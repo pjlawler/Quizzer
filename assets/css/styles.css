@@ -1,41 +1,101 @@
  * {
      box-sizing: border-box;
      margin: 0;
-     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
  }
 
- .title {
-     text-align: center;
-     font-size: 4.5vw;
-     margin-bottom: 50px;
+ header {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     margin: 20px;
+     border-bottom: black 2px solid;
  }
 
+ header h1 {
+     font-size: 55px;
+     font-style: oblique;
+ }
 
- .quizQuestion {
+ .timerBox {
     display: flex;
-    flex-direction: column;
-    justify-content:space-between;
     align-items: center;
+    justify-content: space-around;
+    width: 150px;
+    height: 100px;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 20px;
  }
 
-.quizQuestion h2 {
-    font-size: 2.5vw;
-}
+ .timerBox p {
+     width: 95%;
+     font-size: 35px;
+     text-align: center;
+     border: black 1px solid;
+     background: cyan;
+ }
 
- #answerButtons {
-    margin-top: 25px; 
+ section {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     width: 95%;
+     margin: 0 auto;
+ }
+
+ .questionText {
+     font-size: 32px;
+     font-weight:normal;
+ }
+
+ #answerBoxes {
+     display: flex;
+     flex-wrap:wrap;
+     justify-content: space-around;
+ }
+
+ #answerBoxes div {
     display: flex;
-     flex-wrap: wrap;
-
+    border: black 1px solid;
+    height: 100px;
+    width: 400px;
+    font-size: 15px;
+    margin: 20px;
+    align-items: center;
+    border-radius: 25px;
  }
-
-button {
-     border: 1px solid black;
-     margin: 10px;
-     flex: 1 0 33%;
-     font-size: 1.5vw;
-     height: 150px;
-     /* width: 300px; */
-     padding: 25px;
+ 
+ #answerBoxes div p {
+     width: 90%;
+     margin: 0 auto;
+     text-align: center;
 }
 
+ .correct_answer {
+     background: rgb(6, 240, 6);
+     font-weight: bolder;
+ }
+
+ .wrong_answer {
+     background: rgb(246, 3, 3);
+     color: yellow;
+     font-weight: bolder;
+ }
+
+
+.timerBox h2 {
+    font-size: 14px;
+}
+
+#start-button {
+    height: 35px;
+    width: 150px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 675px) {
+    .questionText {
+        text-align: center;
+    }
+}
