@@ -10,25 +10,45 @@
 <body>
     <header>
         <h1>Quizzer</h1>
-        <div class="scoreboard">
-            <h2>Score</h2>
-            <h3 id=current-score>0</h3>
-        </div>
-        <div class="timerBox">
-            <h2>Timer</h2>
-            <button id="start-button">Start</button>
-        </div>
+       
     </header>
 
-    <section id="answerArea" class="quizBox">
-        <h2 class="questionText">Welcome to Quizzer! Press Start to begin.</h2>
-        <div id="answerBoxes">            
-            <div id="answer-0"><p id="answer-text-0"></p></div>
-            <div id="answer-1"><p id="answer-text-1"></p></div>
-            <div id="answer-2"><p id="answer-text-2"></p></div>
-            <div id="answer-3"><p id="answer-text-3"></p></div>
-        </div>
-    </section>
-    <script src="./assets/js/script.js"></script>
+    <div class="main">
+        <section class="left-side">
+            <div class="scoreboard">
+                <h2>Score</h2>
+                <h3 id=current-score>0</h3>
+            </div>
+            <div class="timerBox">
+                <h2>Timer</h2>
+                <button id="start-button">Start</button>
+            </div>
+            <table class="leaderboard">
+                <tr>
+                    <th>Initials</th>
+                    <th>Score</th>
+                </tr>
+                <tr>
+                    <td>PJL</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>KAH</td>
+                    <td>4750</td>
+                </tr>
+            </table>
+        </section>
+        <section id="answerArea" class="quizBox">
+            <h2 class="questionText">Welcome to Quizzer! Press Start to begin.</h2>
+            <div id="answerBoxes">            
+                <div id="answer-0"><p id="answer-text-0"></p></div>
+                <div id="answer-1"><p id="answer-text-1"></p></div>
+                <div id="answer-2"><p id="answer-text-2"></p></div>
+                <div id="answer-3"><p id="answer-text-3"></p></div>
+            </div>
+        </section>
+        <script src="./assets/js/script.js"></script>
+    </div>
+   
 </body>
 </html>

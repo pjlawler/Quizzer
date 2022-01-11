@@ -10,7 +10,6 @@ let answeredWrong = null;
 let gameOver = true;
 let score = null;
 
-
 const questionBank = [
     {
     questionType: 1,
@@ -23,8 +22,13 @@ const questionBank = [
     questionText: "What loop shoud be used when iterating through a specific number of times?",
     answers: ["A 'for' loop", "A 'do' loop", "A 'while' loop", "An 'each' loop"],
     correctAnswer: 0
-    }
-]
+    },
+    {
+    questionType: 1,
+    questionText: "Which is NOT a viable expression in Javascript?",
+    answers: ["const pi = 3.1456;", "let lightIsOn = !switchIsDown;", "let z = x === y;", "dim var = 1000;"],
+    correctAnswer: 3
+    }]
 
 function presentQuestion() {
 
@@ -34,6 +38,7 @@ function presentQuestion() {
 
     if (gameOver != true) {
         questionText = questionBank[currentQuestion].questionText;
+        shuffleAnswers();
     }
 
     // Displays the question from the question bank into it's respectve element
@@ -71,15 +76,28 @@ function decrementTimer() {
         // Ends the game once the last question in the questionBank is answered
         clearInterval(gameTimer);
         gameOver = true;
-        startEl.textContent = "Start"
-        score = score + Math.floor(timerValue * 100)
+        startEl.textContent = "Start";
+        score = score + Math.floor(timerValue * 100);
         updateScoreBoard();
-        alert("Congratulations! You've finished the quiz before the time ran out! You've earned " + Math.floor(timerValue * 100) + " bonus timer points!");
+        const initials = prompt("Congratulations! You've finished the quiz before the time ran out! You've earned " + Math.floor(timerValue * 100) + " bonus timer points for a total of " + score + " points!\n\nPlease enter your initials!");
         presentQuestion();
     }
-    else if (timerValue > 0 && !gameOver) {
+    else if (!gameOver) {
         // Decreases the timer by .1 second and displays on the page as long as timer is >0 and the game is still in play
         timerValue = (timerValue - .1).toFixed(1);
+
+        if(timerValue<=0) {
+            gameOver = true;
+            timerValue = 0;
+            score = 0;
+            startEl.textContent = "Start";
+            clearInterval(gameTimer);
+            alert("You've run out of time, unfortunately you've lost all your points...");
+            updateScoreBoard();
+            presentQuestion();
+            return false;
+        }
+
         let strTime = timerValue.toString();
         
         if (timerValue < 10) {
@@ -89,19 +107,11 @@ function decrementTimer() {
         startEl.textContent = strTime;
     }
     else {
-        // This will execute when timer has expired or the player pressed the stop button
+        // This will execute when the player pressed the stop button
         score = 0;
-        startEl.textContent = "Start"
+        startEl.textContent = "Start";
         clearInterval(gameTimer);
-
-        if (gameOver = true) {
-            endMessage = "You've stopped the game and gave up all your points."
-        }
-        else {
-            endMessage = "You've run out of time and lost all your points!"
-            gameOver = true;        
-        }
-        alert(endMessage);
+        alert("You've stopped the game and gave up all your points.");
         updateScoreBoard();
         presentQuestion();
     }
@@ -130,8 +140,9 @@ function answerClicked(event) {
     }
     else {
         answeredWrong++;
-        timerValue = timerValue - 20;
         answeredEl.className = "wrong_answer";
+        timerValue = timerValue - 20;
+        
     }
 
     // Keeps the background the result color intermittently, then resets it back to normal before presenting the next question.
@@ -159,7 +170,28 @@ function buttonClicked() {
         score = 0;
         currentQuestion = 0;
         gameTimer = setInterval(decrementTimer, 100);
+        shuffleQuestionBank();
         presentQuestion();
+    }
+}
+
+function shuffleQuestionBank() {
+    for (let i = 0; i < questionBank.length; i++) {
+        const swapIndex = Math.floor(Math.random() * questionBank.length);
+        [questionBank[i], questionBank[swapIndex]] = [questionBank[swapIndex], questionBank[i]];
+    }
+}
+
+function shuffleAnswers() {
+    for (let i = 0; i < 4; i++) {
+        const swapIndex = Math.floor(Math.random() * 4);
+        if (swapIndex == questionBank[currentQuestion].correctAnswer) {
+            questionBank[currentQuestion].correctAnswer = i;
+        }
+        else if (i == questionBank[currentQuestion].correctAnswer) {
+            questionBank[currentQuestion].correctAnswer = swapIndex
+        }
+        [questionBank[currentQuestion].answers[i], questionBank[currentQuestion].answers[swapIndex]] = [questionBank[currentQuestion].answers[swapIndex], questionBank[currentQuestion].answers[i]];
     }
 }
 
@@ -167,6 +199,6 @@ answerAreaEl.addEventListener("click", answerClicked);
 startEl.addEventListener("click", buttonClicked)
 
 // Things to do
-// Shuffle the question bank
-// Shuffle the answers
-// Update the UI/UX
+// Update UI
+// Refactor the code
+// Update leader board
