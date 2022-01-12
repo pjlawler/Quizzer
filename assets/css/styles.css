@@ -4,12 +4,9 @@
      font-family: 'Roboto', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
      background: whitesmoke;
      color: black;
- }
+}
 
- header {
-     /* display: flex;
-     justify-content: space-between;
-     align-items: center; */
+header {
      margin: 20px;
      border: black 2px solid;
      background: rgb(131, 62, 62);
@@ -17,18 +14,16 @@
      margin: 0 auto;
      padding: 10px;
      margin-bottom: 25px;
- }
+}
 
- header h1 {
+header h1 {
      font-size: 55px;
      font-style: oblique;
      background: transparent;
      color: whitesmoke;
-     text-align: center;
- }
-
+}
  
- .main {
+.main {
     display: flex;
     width: 95%;
     margin: 0 auto;
@@ -39,7 +34,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     width: 250px;
     border: black 2px solid;
     background: rgb(131, 62, 62);
@@ -48,26 +43,35 @@
 .timerBox {
     display: flex;
     align-items: center;
-    justify-content: space-around;
     width: 90%;
-    height: 100px;
-    flex-direction: column;
-    border: 2px solid black;
-    margin: 20px;
-    background: transparent;
- }
-
- .scoreboard {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
     flex-direction: column;
     background: transparent;
-    width: 90%;
- }
+    padding: 5px;
+}
 
- #current-score {
-    background: whitesmoke;
+.scores {
+    width: 90%;
+    height: 300px;
+    align-content: center;
+}
+
+table {
+    width: 100%;
+}
+
+
+.timerBox h2 {
+    background: transparent;
+    margin-bottom: 10px;
+}
+
+table tbody {
+    width: 100%;
+    text-align: center;
+    /* flex: 1 0 85%; */
+}
+#current-score {
+    /* background: whitesmoke; */
     border: black 2px solid;
     width: 100%;
     font-size: 35px;
@@ -76,21 +80,24 @@
     color: black;
 }
 
-.left-side h2 {
-    background: transparent;
-    color: whitesmoke;
+
+.leaderBoard {
+    /* display: flex; */
+    /* width: 90%; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* text-align: center; */
+    /* background: transparent; */
 }
 
-.leaderboard {
-    background: transparent;
-    width: 90%;
-}
 
-.left-side tr, td, table {
-    text-align: center;
-    background-color: transparent;
+#reset-button {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 50px;
 }
-
 
 .quizBox {
     display: flex;
@@ -105,24 +112,23 @@
     padding: 30px;
 }
 
- .questionText {
+.questionText {
      font-size: 32px;
      font-weight:normal;
      color: black;
      background: transparent;
      height: 100px;
- }
+}
 
- #answerBoxes {
+#answerBoxes {
      display: flex;
      flex-wrap:wrap;
      justify-content: space-around;
      background: transparent;
      width: 90%;
+}
 
- }
-
- #answerBoxes div {
+#answerBoxes div {
     display: flex;
     border: black 1px solid;
     height: 100px;
@@ -130,11 +136,10 @@
     font-size: 15px;
     margin: 20px;
     align-items: center;
-    border-radius: 25px;
-   
+    border-radius: 25px; 
  }
  
- #answerBoxes div p {
+#answerBoxes div p {
      width: 90%;
      margin: 0 auto;
      text-align: center;
@@ -147,26 +152,21 @@
      font-weight: bolder;
  }
 
- .wrong_answer {
+.wrong_answer {
      background: rgb(246, 3, 3);
      color: yellow;
      font-weight: bolder;
  }
 
 
-.timerBox h2 {
-    /* font-size: 14px; */
-}
-
 #start-button {
-    width: 95%;
+    width: 80%;
     font-size: 35px;
     border-radius: 10px;
     background: whitesmoke;
     color: black;
     font-weight:300;
 }
-
 
 
 @media screen and (max-width: 900px) {
@@ -176,11 +176,11 @@
     
     .left-side {
         width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding: 10px;
         border-top: transparent;
         flex-direction: row;
         justify-content:space-around;
+        align-items: flex-start;
     }
 
     .questionText {
