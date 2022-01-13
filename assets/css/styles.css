@@ -7,22 +7,40 @@
 }
 
 header {
-     margin: 20px;
      border: black 2px solid;
      background: rgb(131, 62, 62);
      width: 95%;
      margin: 0 auto;
      padding: 10px;
      margin-bottom: 25px;
+     height: 85px;
 }
 
 header h1 {
-     font-size: 55px;
+     font-size: 3.5em;
      font-style: oblique;
      background: transparent;
      color: whitesmoke;
 }
- 
+
+footer {
+    border: black 2px solid;
+    background: rgb(131, 62, 62);
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    margin-top: 25px;
+}
+
+footer h4 {
+    font-size: .9em;
+    font-style: oblique;
+    background: transparent;
+    color: whitesmoke;
+    text-align: center;
+}
+
+
 .main {
     display: flex;
     width: 95%;
@@ -30,7 +48,6 @@ header h1 {
 }
 
 .left-side {
-    flex-basis: 1 0 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -68,10 +85,9 @@ table {
 table tbody {
     width: 100%;
     text-align: center;
-    /* flex: 1 0 85%; */
 }
+
 #current-score {
-    /* background: whitesmoke; */
     border: black 2px solid;
     width: 100%;
     font-size: 35px;
@@ -79,17 +95,6 @@ table tbody {
     text-align: center;
     color: black;
 }
-
-
-.leaderBoard {
-    /* display: flex; */
-    /* width: 90%; */
-    /* flex-direction: column; */
-    /* justify-content: center; */
-    /* text-align: center; */
-    /* background: transparent; */
-}
-
 
 #reset-button {
     margin: 0 auto;
@@ -113,7 +118,7 @@ table tbody {
 }
 
 .questionText {
-     font-size: 32px;
+     font-size: 1.8em;
      font-weight:normal;
      color: black;
      background: transparent;
@@ -131,16 +136,17 @@ table tbody {
 #answerBoxes div {
     display: flex;
     border: black 1px solid;
-    height: 100px;
-    flex: 0 1 400px;
+    height: 125px;
+    flex: 1 1 46%;
+    margin: 2%;
     font-size: 15px;
-    margin: 20px;
     align-items: center;
     border-radius: 25px; 
  }
  
 #answerBoxes div p {
-     width: 90%;
+    font-size: 1.1em;
+     width: 95%;
      margin: 0 auto;
      text-align: center;
      background: transparent;
@@ -168,6 +174,17 @@ table tbody {
     font-weight:300;
 }
 
+@media screen and (max-width: 1500px) {
+    #answerBoxes div {
+        height: 100px;
+     }
+}
+
+@media screen and (max-width: 1300px) {
+    #answerBoxes div {
+        flex: 1 1 50%;
+     }
+}
 
 @media screen and (max-width: 900px) {
     .main {
@@ -184,15 +201,11 @@ table tbody {
     }
 
     .questionText {
-        font-size: 22px;
-        background: transparent;
-        height: 100px;
+        /* font-size: 22px; */
+        /* background: transparent; */
+        /* height: 100px; */
     }
 
-@media screen and (min-width: 1500px) {
-    #answerboxs {
-        width: 80%;
-    }
-}
+
 
 }

@@ -165,7 +165,7 @@ function answerClicked(event) {
     // Keeps the background the result color illuminated intermittently, then resets it back to normal before presenting the next question.
     setTimeout(() => {
         answeredEl.className = "";
-        currentQuestion++
+        currentQuestion++;
         presentQuestion();
     }, 500);
 }
@@ -188,7 +188,7 @@ function shuffleAnswers() {
             questionBank[currentQuestion].correctAnswer = i;
         }
         else if (i == questionBank[currentQuestion].correctAnswer) {
-            questionBank[currentQuestion].correctAnswer = swapIndex
+            questionBank[currentQuestion].correctAnswer = swapIndex;
         }
         [questionBank[currentQuestion].answers[i], questionBank[currentQuestion].answers[swapIndex]] = [questionBank[currentQuestion].answers[swapIndex], questionBank[currentQuestion].answers[i]];
     }
@@ -196,9 +196,26 @@ function shuffleAnswers() {
 
 function addScoreToBoard() {
     
+
+    // Calculate position on board and create a messge if placed
+    let placementMessage = null;
+
+    if (leaderBoard.length === 0 || score > leaderBoard[0][1]) {
+        // Top score
+        placementMessage = "Awesome job, you have high score!";
+    }
+    else if (leaderBoard.length < 10 || score > leaderBoard[leaderBoard.length - 1][1]) {
+        // In the top 10
+        placementMessage = "Excellent work, you've made it into the top 10 scores!";
+    }
+    else {
+        // Did not make it into the top 10
+        return false;
+    }
+
     // Gets the players initials and protects from more than 3 chars or no characters
     // Also inserts ??? if the user does not enter any chars
-    let initials = prompt("Please enter your initials.");
+    let initials = prompt(placementMessage + "\n\nPlease enter your initials.");
     initials = (!initials) ? "???" : initials.substring(0,3).toUpperCase();
 
     // Adds the players initials and score to leaderboard array and then sorts it by the highest score
@@ -207,12 +224,8 @@ function addScoreToBoard() {
 
     // Code to sort the array by the second element and in reverse order
     function sortByScores(a, b) {
-        if (a[1] === b[1]) {
-            return 0;
-        }
-        else {
-            return (a[1] > b[1]) ? -1 : 1;
-        }
+        if (a[1] === b[1]) { return 0; }
+        else { return (a[1] > b[1]) ? -1 : 1; }
     }
 
     // Ensures there is no more than 10 scores listed in the array
@@ -259,6 +272,7 @@ function loadScores() {
 
     // Loads the store leaderboard array from localstorage and then executes the funtion to display the list
     leaderBoard = JSON.parse(window.localStorage.getItem('scores'));
+    leaderBoard = (!leaderBoard === null) ? leaderBoard = leaderBoard : leaderBoard = [];
     refreshLeaderBoard();
 }
 
@@ -277,10 +291,11 @@ function endQuiz(cause) {
 
             // Allows for the scoreboard to be updated before the alert is displayed
             setTimeout(() => { 
-                alert("Congratulations! You've completed the quiz in the alloted time.\n\nYou've answered " + answeredCorrect + " questions correctly with " + timerValue + " seconds left on the clock!");
+                alert("Congratulations! You've completed the quiz in the alloted time.\n\nYour score " + score + " points is derived from " + answeredCorrect + " correct answers X 1000 and a " + Math.floor(timerValue * 1000) +" timer bonus!" );
                 addScoreToBoard()
             }, 250);
             break;
+        
         case "incomplete":
             timerValue = 0;
             score = 0;
@@ -291,6 +306,7 @@ function endQuiz(cause) {
                 alert("You've run out of time, unfortunately you've lost all your points...");
             }, 250);
             break;
+
         default:
             score = 0;
             updateScoreBoard();
@@ -301,8 +317,6 @@ function endQuiz(cause) {
             }, 250);
     }
 }
-
-
 
 loadScores();
 
