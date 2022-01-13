@@ -125,7 +125,7 @@ table tbody {
      flex-wrap:wrap;
      justify-content: space-around;
      background: transparent;
-     width: 90%;
+     width: 95%;
 }
 
 #answerBoxes div {
@@ -189,6 +189,10 @@ table tbody {
         height: 100px;
     }
 
-
+@media screen and (min-width: 1500px) {
+    #answerboxs {
+        width: 80%;
+    }
+}
 
 }
