@@ -40,6 +40,7 @@ const questionBank = [
     answers: ["const pi = 3.1456;", "let lightIsOn = !switchIsDown;", "let z = x === y;", "dim var = 1000;"],
     correctAnswer: 3
     }]
+
 let gameTimer = null;
 let timerValue = null;
 let currentQuestion = null;
@@ -272,7 +273,8 @@ function loadScores() {
 
     // Loads the store leaderboard array from localstorage and then executes the funtion to display the list
     leaderBoard = JSON.parse(window.localStorage.getItem('scores'));
-    leaderBoard = (!leaderBoard === null) ? leaderBoard = leaderBoard : leaderBoard = [];
+    console.log(leaderBoard === null)
+    leaderBoard = (leaderBoard === null) ? leaderBoard = [] : leaderBoard = leaderBoard;
     refreshLeaderBoard();
 }
 
