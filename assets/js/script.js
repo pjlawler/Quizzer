@@ -273,7 +273,6 @@ function loadScores() {
 
     // Loads the store leaderboard array from localstorage and then executes the funtion to display the list
     leaderBoard = JSON.parse(window.localStorage.getItem('scores'));
-    console.log(leaderBoard === null)
     leaderBoard = (leaderBoard === null) ? leaderBoard = [] : leaderBoard = leaderBoard;
     refreshLeaderBoard();
 }
